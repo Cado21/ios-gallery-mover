@@ -40,3 +40,8 @@ Thumbs.db
 config.json
 *.log
 temp/
+
+# PyInstaller
+*.spec
+build/
+dist/
