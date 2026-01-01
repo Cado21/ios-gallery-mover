@@ -155,21 +155,27 @@ This application is created for personal use.
 
 To create a standalone `.exe` file for distribution:
 
-### Quick Build
+### Quick Build (For Testing)
 
 ```bash
 .\build_exe.bat
 ```
 
-This creates `dist\iOS-Photo-Mover.exe` (~20 MB) that users can run without Python installed.
+- Simple and fast
+- Auto-detects dependencies
+- Good for quick testing
 
-### Advanced Build
+### Advanced Build (For Distribution) ⭐ Recommended
 
 ```bash
 .\build_advanced.bat
 ```
 
-This creates an optimized executable with all dependencies included.
+- Cleans previous builds
+- Explicitly includes all dependencies
+- Bundles README.md
+- More reliable for distribution
+- Recommended for sharing with users
 
 ### Manual Build
 
