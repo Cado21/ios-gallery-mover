@@ -1,79 +1,80 @@
 # iOS Photo Mover
 
-Aplikasi Windows untuk memindahkan dan mengorganisir foto dari perangkat iOS ke komputer Windows melalui kabel USB.
+A Windows application to transfer and organize photos from iOS devices to Windows PC via USB cable.
 
-## Fitur
+## Features
 
-1. **Koneksi iOS ke PC**: Terhubung ke perangkat iOS melalui kabel USB
-2. **Pemilihan Foto**: Pilih foto yang ingin dipindahkan dengan mudah
-3. **Pengaturan Pengurutan**: 
-   - **Month_Year**: Mengurutkan berdasarkan Bulan-Tahun (contoh: `2024-01`)
-   - **Date_Month_Year**: Mengurutkan berdasarkan Tanggal-Bulan-Tahun (contoh: `2024-01-15`)
-4. **Folder Unknown**: Foto tanpa tanggal akan dipindahkan ke folder "Unknown" yang dapat dikonfigurasi
-5. **Path yang Dapat Dikonfigurasi**: Pilih lokasi output dan folder Unknown sesuai kebutuhan
+1. **iOS to PC Connection**: Connect to iOS devices via USB cable
+2. **Photo Selection**: Easily select photos to transfer with checkboxes
+3. **Sorting Options**: 
+   - **Month_Year**: Sort by Month-Year (example: `2024-01`)
+   - **Date_Month_Year**: Sort by Date-Month-Year (example: `2024-01-15`)
+4. **Duplicate Handling**:
+   - **overwrite**: Replace existing files
+   - **keep_both**: Rename new files (e.g., `file_1.mov`)
+   - **skip**: Skip files that already exist
+5. **Unknown Folder**: Photos without dates will be moved to a configurable "Unknown" folder
+6. **Configurable Paths**: Choose output location and Unknown folder as needed
+7. **Metadata Preservation**: Maintains original file creation and modification dates
+8. **Progress Tracking**: Real-time progress with remaining file count
+9. **Detailed Error Reporting**: Clear error messages with file-specific details
 
-## Instalasi
+## Installation
 
-### Prasyarat
+### Prerequisites
 
-1. **Python 3.8 atau lebih baru** - [Download Python](https://www.python.org/downloads/)
-2. **iTunes atau Apple Mobile Device Support** - Diperlukan untuk koneksi ke perangkat iOS
-3. **Perangkat iOS** dengan kabel USB
+1. **Python 3.8 or newer** - [Download Python](https://www.python.org/downloads/)
+2. **iTunes or Apple Mobile Device Support** - Required for iOS device connection
+3. **iOS Device** with USB cable
 
-### Langkah Instalasi
+### Installation Steps
 
-1. Clone atau download repository ini
-2. Buka terminal/command prompt di folder project
+1. Clone or download this repository
+2. Open terminal/command prompt in the project folder
 3. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-**Catatan**: `pymobiledevice3` memerlukan beberapa dependensi sistem. Jika mengalami masalah:
+## Usage
 
-- **Windows**: Pastikan Anda telah menginstall [iTunes](https://www.apple.com/itunes/) atau [Apple Mobile Device Support](https://support.apple.com/downloads)
-- Jika masih ada masalah, coba install dengan:
-```bash
-pip install pymobiledevice3[usbmuxd]
-```
-
-## Penggunaan
-
-1. **Jalankan aplikasi**:
+1. **Run the application**:
 ```bash
 python main.py
 ```
 
-2. **Hubungkan perangkat iOS**:
-   - Sambungkan iPhone/iPad ke PC menggunakan kabel USB
-   - Buka kunci perangkat iOS Anda
-   - Jika diminta, pilih "Trust This Computer" di perangkat iOS
+2. **Connect iOS device**:
+   - Connect iPhone/iPad to PC using USB cable
+   - Unlock your iOS device
+   - If prompted, select "Trust This Computer" on your iOS device
 
-3. **Koneksi di aplikasi**:
-   - Klik tombol "Connect to iOS Device"
-   - Tunggu hingga status berubah menjadi "Connected"
+3. **Connect in the app**:
+   - Click "Connect to iOS Device" button
+   - Wait until status changes to "Connected"
 
-4. **Load foto**:
-   - Klik tombol "Load Photos from Device"
-   - Foto akan muncul di daftar
+4. **Load photos**:
+   - Click "Load Photos from Device" button
+   - Photos will appear in the list
 
-5. **Pilih foto**:
-   - Centang foto yang ingin dipindahkan (klik kotak di kolom pertama)
-   - Gunakan "Select All" atau "Deselect All" untuk memilih semua/tidak ada
+5. **Select photos**:
+   - Check photos you want to transfer (click checkbox in first column)
+   - Use "Select All" or "Deselect All" for bulk selection
+   - Shift+Click for range selection
 
-6. **Konfigurasi**:
-   - Pilih mode pengurutan: **Month_Year** atau **Date_Month_Year**
-   - Pilih "Output Base Path" - folder utama tempat foto akan disimpan
-   - Pilih "Unknown Folder Path" - folder untuk foto tanpa tanggal
+6. **Configuration**:
+   - Choose sorting mode: **Month_Year** or **Date_Month_Year**
+   - Select "Output Base Path" - main folder where photos will be saved
+   - Select "Unknown Folder Path" - folder for photos without dates
+   - Choose duplicate handling: **overwrite**, **keep_both**, or **skip**
 
-7. **Pindahkan foto**:
-   - Klik tombol "Move Selected Photos"
-   - Konfirmasi aksi
-   - Proses akan berjalan dan progress ditampilkan di log
+7. **Move photos**:
+   - Click "Move Selected Photos" button
+   - Confirm action
+   - Process will run and progress will be displayed in the log
 
-## Struktur Folder Output
+## Output Folder Structure
 
-### Mode Month_Year:
+### Month_Year Mode:
 ```
 Output Base Path/
 ├── 2024-01/
@@ -85,7 +86,7 @@ Output Base Path/
     └── IMG_004.jpg
 ```
 
-### Mode Date_Month_Year:
+### Date_Month_Year Mode:
 ```
 Output Base Path/
 ├── 2024-01-15/
@@ -97,48 +98,67 @@ Output Base Path/
     └── IMG_004.jpg
 ```
 
-## Konfigurasi
+## Configuration
 
-Aplikasi menyimpan konfigurasi di file `config.json`. Anda dapat:
-- Mengubah konfigurasi melalui UI
-- Klik "Save Configuration" untuk menyimpan pengaturan
-- Konfigurasi akan otomatis dimuat saat aplikasi dibuka
+The application saves configuration in `config.json`. You can:
+- Change configuration through the UI
+- Click "Save Configuration" to save settings
+- Configuration will automatically load when the app starts
 
 ## Troubleshooting
 
-### Perangkat tidak terdeteksi
-- Pastikan kabel USB terhubung dengan baik
-- Pastikan perangkat iOS dalam keadaan terbuka (unlocked)
-- Pastikan Anda telah memilih "Trust This Computer" di perangkat iOS
-- Pastikan iTunes atau Apple Mobile Device Support terinstall
-- Coba cabut dan sambungkan kembali kabel USB
+### Device not detected
+- Ensure USB cable is properly connected
+- Ensure iOS device is unlocked
+- Ensure you have selected "Trust This Computer" on your iOS device
+- Ensure iTunes or Apple Mobile Device Support is installed
+- Try unplugging and reconnecting the USB cable
 
-### Error saat install pymobiledevice3
-- Pastikan Python 3.8+ terinstall
-- Coba update pip: `python -m pip install --upgrade pip`
-- Install dengan: `pip install pymobiledevice3[usbmuxd]`
+### Photos not showing
+- Ensure device is connected and trusted
+- Try clicking "Load Photos from Device" again
+- Check the log for detailed error messages
 
-### Foto tidak muncul
-- Pastikan perangkat terhubung dan terpercaya
-- Coba klik "Load Photos from Device" lagi
-- Beberapa perangkat iOS mungkin menyimpan foto di lokasi berbeda
+### Error while moving photos
+- Ensure output path and unknown folder path are valid
+- Ensure sufficient disk space is available
+- Check the log for detailed error messages
+- Review the ERROR DETAILS section at the end of the process
 
-### Error saat memindahkan foto
-- Pastikan path output dan unknown folder valid
-- Pastikan ada ruang disk yang cukup
-- Periksa log untuk detail error
+### Windows copy popup appears
+- This is a Windows limitation when copying from MTP devices
+- The popup cannot be completely suppressed
+- The application will continue copying in the background
 
-## Catatan Penting
+## Important Notes
 
-- **Backup**: Disarankan untuk membuat backup foto sebelum memindahkan
-- **Original Files**: Aplikasi ini **menyalin** foto dari perangkat, bukan menghapus. Foto asli tetap ada di perangkat iOS
-- **File Duplikat**: Jika file dengan nama yang sama sudah ada, aplikasi akan menambahkan nomor (contoh: `IMG_001_1.jpg`)
+- **Backup**: It's recommended to backup photos before transferring
+- **Original Files**: This application **copies** photos from the device, not deletes them. Original photos remain on the iOS device
+- **Duplicate Files**: Configurable behavior - overwrite, keep both, or skip
+- **Metadata**: The application preserves original file creation and modification dates
+- **Progress**: Real-time progress tracking with [X/Y] format and remaining count
+- **Error Handling**: Detailed error reporting with file-specific information
 
-## Lisensi
+## Technical Details
 
-Aplikasi ini dibuat untuk penggunaan pribadi.
+- **MTP Protocol**: Uses Windows Shell API to access iOS devices via MTP
+- **Metadata Extraction**: Reads file properties from Windows Shell
+- **Date Preservation**: Uses Win32 API to set file timestamps
+- **Threading**: Background operations to prevent UI freezing
+- **COM Initialization**: Proper COM handling for thread safety
 
-## Kontribusi
+## License
 
-Jika menemukan bug atau ingin menambahkan fitur, silakan buat issue atau pull request.
+This application is created for personal use.
 
+## Contributing
+
+If you find bugs or want to add features, please create an issue or pull request.
+
+## Requirements
+
+- Python 3.8+
+- pywin32
+- hachoir (for metadata extraction)
+
+See `requirements.txt` for complete list.
