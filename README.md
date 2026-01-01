@@ -151,14 +151,88 @@ The application saves configuration in `config.json`. You can:
 
 This application is created for personal use.
 
+## Building Executable
+
+To create a standalone `.exe` file for distribution:
+
+### Quick Build
+
+```bash
+.\build_exe.bat
+```
+
+This creates `dist\iOS-Photo-Mover.exe` (~20 MB) that users can run without Python installed.
+
+### Advanced Build
+
+```bash
+.\build_advanced.bat
+```
+
+This creates an optimized executable with all dependencies included.
+
+### Manual Build
+
+```bash
+pip install pyinstaller
+python -m PyInstaller --onefile --windowed --name "iOS-Photo-Mover" main.py
+```
+
+The executable will be created in `dist\iOS-Photo-Mover.exe` (~20 MB).
+
+### Build Options
+
+- `--onefile`: Bundle everything into a single .exe file
+- `--windowed`: No console window (GUI only)
+- `--name`: Name of the executable
+
+### Distribution
+
+After building:
+
+1. **Test the executable**:
+   - Run `dist\iOS-Photo-Mover.exe`
+   - Test all features
+   - Verify all dependencies work
+
+2. **Distribute**:
+   - Share the `iOS-Photo-Mover.exe` file
+   - Users do NOT need Python installed
+   - Users still need iTunes or Apple Mobile Device Support
+
+### Build Troubleshooting
+
+**Executable is too large**
+- Normal size is ~20 MB due to Python runtime and dependencies
+- This is expected for PyInstaller builds
+
+**Missing modules error**
+- Add the missing module with `--hidden-import module_name`
+
+**Antivirus flags the .exe**
+- Common with PyInstaller executables
+- Sign the executable with a code signing certificate (optional)
+- Users may need to add exception in their antivirus
+
+**Application crashes on startup**
+- Test on a clean Windows machine without Python
+- Ensure iTunes/Apple Mobile Device Support is installed
+- Use `--console` flag instead of `--windowed` for debugging
+
 ## Contributing
 
 If you find bugs or want to add features, please create an issue or pull request.
 
 ## Requirements
 
+### For Development:
 - Python 3.8+
 - pywin32
 - hachoir (for metadata extraction)
 
 See `requirements.txt` for complete list.
+
+### For End Users (Executable):
+- Windows 10 or later
+- iTunes or Apple Mobile Device Support
+- No Python installation required!
